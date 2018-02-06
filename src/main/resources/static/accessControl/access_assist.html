@@ -1,0 +1,43 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="/easyui/demo.css" />
+<script type="text/javascript" src="/easyui/jquery.min.js" ></script>
+<script type="text/javascript" src="/easyui/jquery.easyui.min.js" ></script>
+<script type="text/javascript" src="/easyui/easyui-lang-zh_CN.js" charset="utf-8" ></script>
+<script type="text/javascript" src="/easyui/datagrid-detailview.js"></script>
+<script src='/js/comm.js' type="text/javascript"></script>
+<script src='/js/assist.js' type="text/javascript"></script>
+</head>
+
+</div>
+<body onload="datagridInitAndShow('#assistAccountDg','<%=basePath %>accessauth/queryAssistAcount.action')"
+	style="width:95%;height:90%;">
+	<table id="assistAccountDg"  title="充值记录"
+		style="width:95%;height:95%" toolbar="#recordTb"></table>
+
+	<div id="recordTb" style="padding:3px">
+<!-- 		<span>访问用户：</span> -->
+<!-- 		 <select id="costomer" class="easyui-combobox" panelHeight="80px" -->
+<!-- 			style="line-height:16px;border:1px solid #ccc" -->
+<!-- 		> -->
+<!-- 			<option >全部</option> -->
+<!-- 			<option value="微付充">微付充</option> -->
+<!-- 			<option value="自助终端">自助终端</option> -->
+<!-- 		</select>  -->
+		
+		<span>  开始时间：</span> 
+		<input id="startTime"  class="easyui-datetimebox"
+			style="line-height:16px;border:1px solid #ccc"> 
+		<span>  结束时间：</span>
+		<input id="endTime"  class="easyui-datetimebox" style="line-height:16px;border:1px solid #ccc">
+		<a href="#" class="easyui-linkbutton" plain="true"
+			onclick="queryAssistAccount()">查询对账数据</a>
+		<a href="#" class="easyui-linkbutton" plain="true"
+			onclick="exportData()">导出对账数据</a>
+			
+	</div>
+</body>
+
+</html>

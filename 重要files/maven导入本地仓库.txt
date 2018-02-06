@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=C:\maven\zhengchuan_extend\sm2util-1.0.jar -DgroupId=sm2util -DartifactId=sm2util -Dversion=1.0 -Dpackaging=jar

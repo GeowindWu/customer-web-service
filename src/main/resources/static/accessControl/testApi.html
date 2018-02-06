@@ -1,0 +1,126 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="/easyui/demo.css" />
+<script type="text/javascript" src="/easyui/jquery.min.js" ></script>
+<script type="text/javascript" src="/easyui/jquery.easyui.min.js" ></script>
+<script type="text/javascript" src="/easyui/easyui-lang-zh_CN.js" charset="utf-8" ></script>
+<script type="text/javascript" src="/easyui/datagrid-detailview.js"></script>
+</head>
+
+<body  style="width:100%;height:100%;" onload="init()">
+	<h2>输入客户代码查询拥有的接口</h2>
+	<label>用户名：</label>
+	<input id="userCode" class="easyui-textbox">
+	<button type="button" onclick="javascript:queryAccess()">查询</button>
+	</br>
+
+	<table id="showApps" class="easyui-datagrid"
+		style="width:85%;height:30%"></table>
+<!-- 	<h2>输入应用ID查询拥有的权限</h2> -->
+<!-- 	<label>应用ID：</label> -->
+<!-- 	<input id="appId" class="easyui-textbox"> -->
+<!-- 	<button type="button" onclick="javascript:queryAccessByAppId()">查询</button> -->
+<!-- 	<table id="showpermission" class="easyui-datagrid" -->
+<!-- 		style="width:85%;height:30%"></table> -->
+
+</body>
+
+
+<script type="text/javascript">
+	function init() {
+		$("#showApps").datagrid({
+			columns : [ [ {
+				field : 'check',
+				width : 100,
+				checkbox : true,
+				align : 'center'
+			}, {
+				field : 'api_id',
+				width : 100,
+				align : 'center'
+			}, {
+				field : 'api_name',
+				width : 100,
+				title : '接口名称',
+				align : 'center'
+			}, {
+				field : 'api_code',
+				width : 100,
+				title : '接口码',
+				align : 'center'
+			} ] ],
+			idField : 'appId',
+			singleSelect : true,
+			method : 'post',
+			loadMsg : '正在加载，请稍后...',
+			pagination : true,
+			checkOnSelect : false,
+			fitColumns : true,
+			striped : true
+		});
+		
+
+	}
+	function getRealPath() {
+		var localObj = window.location;
+		var contextPath = localObj.pathname.split("/")[1];
+		var basePath = localObj.protocol + "//" + localObj.host + "/"
+				+ contextPath;
+		return basePath;
+	}
+	function queryAccess() {
+		var userCode = $("#userCode").textbox('getValue');
+		if (userCode == null || userCode == "") {
+			alert("请输入客户代码");
+			return;
+		}
+		var param = $.param({
+			'userCode' : userCode
+		}, true);
+		var url = getRealPath() + "/accessauth/getAccessByCode.action";
+		myAjax(param, url, "#showApps");
+	}
+
+	function myAjax(data, url, dgId) {
+		$.ajax({
+			url : url,
+			type : "post",
+			data : data,
+			dataType : "json",
+			success : function(data, response, status) {
+				$(dgId).datagrid('loadData', data);
+				$.messager.show({
+					msg : '加载完成',
+					timeout : 5000,
+					showType : 'slide'
+				});
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				var errorInof = "请求失败，请联系维护员！" + XMLHttpRequest.status + " "
+						+ textStatus;
+				$.messager.alert("异常", errorInof, "error");
+				console.log(XMLHttpRequest.readyState);
+			}
+		});
+	}
+	
+	function queryAccessByAppId(){
+			var appId = $("#appId").textbox('getValue');
+			if(appId == null || appId == ""){
+				alert("请输入应用id");
+				return ;
+			}
+			var param = $.param({
+				'appId' : appId
+				
+			},true);
+			var url = getRealPath() + "/accessauth/getAccessById.action";
+			myAjax(param, url,"#showpermission");
+	}
+</script>
+</html>

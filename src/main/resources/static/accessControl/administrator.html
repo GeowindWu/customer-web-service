@@ -1,0 +1,51 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css"/>
+<link rel="stylesheet" type="text/css" href="/easyui/demo.css" />
+<script type="text/javascript" src="/easyui/jquery.min.js" ></script>
+<script type="text/javascript" src="/easyui/jquery.easyui.min.js" ></script>
+<script type="text/javascript" src="/easyui/easyui-lang-zh_CN.js" charset="utf-8" ></script>
+<script type="text/javascript" src="/easyui/datagrid-detailview.js"></script>
+<script src='/js/comm.js' type="text/javascript" charset="utf-8"></script>
+<script src='/js/administrator.js' type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body onload="init()" style="width:95%;height:90%;">
+	
+	<table id="adminDg"  style="width:90%;height:85%" ></table>
+	
+	<div id="addAdmin_window" class="easyui-window" title="新增管理员"
+		data-options="modal:true,closed:true,iconCls:'icon-save',footer:'#add_div_footer'"
+		style="width:30%;height:75%;">
+		
+		<div style="margin-bottom:20px;padding:5px;">
+			<input id="add_adminName" class="easyui-textbox" label="姓名："
+				labelPosition="top" style="width:100%;height:52px">
+		</div>
+		<div style="margin-bottom:20px;padding:5px;">
+			<input id="add_department" class="easyui-textbox" label="部门："
+				labelPosition="top" style="width:100%;height:52px">
+		</div>
+		<div style="margin-bottom:20px;padding:5px;">
+			<input id="add_phoneNo" class="easyui-textbox" label="电话号码："
+				labelPosition="top" 
+				style="width:100%;height:52px">
+		</div>
+		<div style="margin-bottom:20px;padding:5px;">
+			<label style="padding-bottom:5px;">状态：</label>
+			<input id="add_status" class="easyui-switchbutton" label="状态：" labelPosition="top"  data-options="onText:'启用',offText:'禁用'"  
+				  style="width:100%;height:32px;">
+		</div>		
+		  
+		<div id="add_div_footer" style="text-align:right; padding:5px;">
+		<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'"
+			href="javascript:void(0)" style="width:80px"
+			onclick="javascript:addAdmin();">添加</a>
+		</div>
+	
+	
+	</div>
+	
+</body>
+</html> 

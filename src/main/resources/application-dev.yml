@@ -1,0 +1,64 @@
+spring:
+  thymeleaf:
+    cache: false
+    enabled: true
+  mvc:
+    async:
+      # 请求超时时间（ms）
+      request-timeout: 10000
+    
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+        
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/https_access_log?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+  #  username: loguser
+  #  password: accessLog@mysqlpw
+    username: root
+    password: 123456
+
+customer-service:
+  # 铭宏客服接口IP
+  host: 10.1.1.13 
+  # 铭宏客服接口端口
+  port:  7778
+ 
+ftp: 
+  filePath:
+    local: D:\temp\
+    server: /home/rechargeManager/tempFile/
+    remote : ecard_account/
+  url: 172.16.5.27
+  port: 21
+  userName: ftptest
+  password: ftp@ecard
+
+# 本系统的配置，有个接口需要调用系统接口
+system:
+  systemMonitor:  https://10.1.1.146:7856/service
+  keypath:
+    truststore: /home/rechargeManager/clientssl/truststore.jks
+    keystore: /home/rechargeManager/clientssl/client.p12
+  keypw:  
+    truststorepw: 123456
+    keystorepw: 123456
+  
+# 自助机的配置，查询充值记录
+
+frontserver: 
+  query: 
+    url: https://117.141.142.8:9199/lz_frontserver_payCenter/servlet/QueryRefill
+  keystore: /home/rechargeManager/lz_clientSSL/lz_smartclient.p12
+  truststore: /home/rechargeManager/lz_clientSSL/truststore.jks
+  ksPw: lz_smartc@2017}|
+  tsPw: jky:ykt_SmartClient#2017
+
+# 统一账户相关
+account:
+   priKey: MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAIce04zHznF9Xk99KR2jd3OQILeSffBcBj6gNGxs5cqopdLYE6vyYYxhX52BtJZfXsWVetLawepWHC5ZDw3QlzOR3resBOBEiZZmEXzO9xtFD+Eo6zxoCPmIt2zseTOPKMN6h/ocPiP0BaNfw4MGhqURTZX+7yzhcVNqu7tcRt0DAgMBAAECgYAaKEaN11RIthteyfz+ptmF/p3Gy84jjL0MvJjJcJ9fhxxq37eXLtnhgiwvYp+iCJ5hI5neXcjyY28bLdRzOTE72U4QtCawKtaCfPDgh1npmxsi35rCVXleUCy21g1K2qAIpJzwR1OAXjZQ3upmmeo8hVG/SfsSaIdZKeeNWL7SGQJBAO215ffPDPaEVHSfnpVIHGQuaQz1XYIB9dewT0l71jryiYVxr4RYaM6SQ9kMiczGQTxBimhJsfPcrbZuCIuFha8CQQCRhD8BKWjQawy5bETta+d4r6EtTQV0SgzsEYcII93I3SeaNpQd/Eveob2nDgghgCyiQNbUADaiFDg7mogh+AbtAkByWE5v/twodQ0/ME0TWCW4Fw8XWawKTrEYeMoa+gPaRTLbywz356M6wub6MGrU4wUcXBadBd4hBSVWnOVlX+wnAkBeSKCGAS2fdOz+q08RwkttH+a/slrpWR18S3MBbDPEdL63Jcvcjd8etg9q0SWlhyXkTzyiiizb4Vv6CotP7yOVAkAxFU5A0c7Ih8yb0rSlB7n1tIzsx+iARIO95QP3yy7OhI11fOKIxKRCepAIeizdjmHjSysGPi5uXcqHxUTayJvU
+   # 账户扣费url
+   rechargeUrl: http://117.141.142.7:9493/uaps-web-gatewaybeta/WFCauthCodePay/initPay
+   # 订单充值url
+   refundUrl: http://117.141.142.7:9493/uaps-web-gatewaybeta/reversal/reversalOrder

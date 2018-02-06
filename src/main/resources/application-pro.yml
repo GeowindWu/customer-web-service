@@ -1,0 +1,56 @@
+spring:
+  thymeleaf:
+    cache: false
+    enabled: true
+  mvc:
+    async:
+      # 请求超时时间（ms）
+      request-timeout: 10000
+    
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+        
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/https_access_log?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+    username: loguser
+    password: accessLog@mysqlpw
+  #  username: admin
+  #  password: 123456
+
+customer-service:
+  # 铭宏客服接口IP
+  host: 172.16.100.1
+  # 铭宏客服接口端口
+  port:  6601
+ 
+ftp: 
+  filePath:
+    local: D:\temp\
+    server: /home/rechargeManager/tempFile/
+    remote : ecard_account/
+  url: 172.16.5.27
+  port: 21
+  userName: ftptest
+  password: ftp@ecard
+
+# 本系统的配置，有个接口需要调用系统接口
+system:
+  systemMonitor:  https://117.141.142.8:8899/service
+  keypath:
+    truststore: /home/rechargeManager/clientssl/truststore.jks
+    keystore: /home/rechargeManager/clientssl/client.p12
+  keypw:  
+    truststorepw: 123456
+    keystorepw: 123456
+  
+# 自助机的配置，查询充值记录
+
+frontserver: 
+  query: 
+    url: https://117.141.142.8:9199/lz_frontserver_payCenter/servlet/QueryRefill
+  keystore: /home/rechargeManager/lz_clientSSL/lz_smartclient.p12
+  truststore: /home/rechargeManager/lz_clientSSL/truststore.jks
+  ksPw: lz_smartc@2017}|
+  tsPw: jky:ykt_SmartClient#2017

@@ -1,0 +1,29 @@
+1. 添加本地依赖包
+		<dependency>
+			<groupId>frontSign</groupId>
+			<artifactId>frontSign</artifactId>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/frontSign-1.0.jar</systemPath>
+			<version>1.0</version>
+		</dependency>
+		
+2. 右键项目maven -> update project
+
+3.这两个步骤保证系统，能够使用 这个jar包
+
+4.但是上述有个问题：就是打包的时候不会打包本地的jar
+
+5.实际上运行了第2步 ：系统在本地maven库已经有  配置了，目录：E:\Users\LiuGuining\.m2\repository\frontSign
+
+6.只要是5中还没有这个jar包，于是将jar包拷贝进去
+
+7.修改本地依赖包
+		<dependency>
+			<groupId>frontSign</groupId>
+			<artifactId>frontSign</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+8.打包就正常，同时还可以删除本地的jar包
+
+注：eclipse maven 配置的路径在：C:\Users\Administrator\.m2  的配置里面
